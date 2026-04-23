@@ -1,0 +1,129 @@
+/* 1. VARIABLES & RESET */
+:root {
+    --blue: #0038A8;
+    --red: #CE1126;
+    --yellow: #FECB00;
+    --cement: #E5E5E5;
+    --dark: #1A1A1A;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cement);
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    padding-top: 20px; /* Space sa taas ng screen */
+}
+
+h1, h2, h3, button {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+/* 2. LAYOUT */
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 20px; /* Space para hindi dikit sa gilid ng phone */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 5px solid var(--blue);
+    padding-bottom: 15px;
+}
+
+.logo-box h1 {
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--blue);
+}
+
+.red-text {
+    color: var(--red);
+}
+
+.tagline {
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: var(--dark);
+    margin-top: 5px;
+}
+
+/* 3. FORM SECTION (The Card) */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 8px 8px 0px var(--blue);
+    margin-bottom: 45px; /* Malaking gap bago ang listahan */
+}
+
+.section-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--blue);
+    letter-spacing: 1px;
+}
+
+label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+input:focus {
+    border-color: var(--red);
+    background-color: #fffcfc;
+}
+
+/* Main Action Button (Add Button) */
+#addBtn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#addBtn:hover {
+    background-color: var(--red);
+}
+
+/* 4. INVENTORY LIST SECTION */
+.yellow-bar {
+    height: 4px;
+    background: var(--yellow);
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+#inventoryList {
+    padding-bottom: 50px; /* Space sa pinaka-ibaba */
+}
+
+/* NOTE: Ang style ng .item-card at mga buttons sa loob nito 
+   ay kontrolado na natin sa app.js para sa real-time updates. */

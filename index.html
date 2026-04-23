@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AG Boxing Gym | Inventory</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Gagamit tayo ng 'Oswald' font - mukhang sports at matapang -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo-box">
+                <h1>AG <span class="red-text">BOXING</span> GYM</h1>
+                <p class="tagline">San Pedro Laguna</p>
+            </div>
+        </header>
+
+        <!-- Form Section -->
+        <section class="card">
+            <h2 class="section-title">Magdagdag ng Gamit</h2>
+            <form id="inventoryForm">
+                <label>Pangalan ng Equipment</label>
+                <input type="text" id="itemName" placeholder="e.g. Punching Bag" required>
+                
+                <label>Bilang (Quantity)</label>
+                <input type="number" id="itemQty" placeholder="0" required>
+                
+                <button type="submit" id="addBtn">ILISTA SA INVENTORY</button>
+            </form>
+        </section>
+
+        <!-- List Section -->
+        <section class="list-container">
+            <h2 class="section-title">Kasalukuyang Stocks</h2>
+            <div class="yellow-bar"></div>
+            <ul id="inventoryList">
+                <!-- Dito lilitaw ang mga items -->
+            </ul>
+        </section>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
