@@ -3,45 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AG Boxing Gym | Inventory</title>
+    <title>AG Boxing Gym | Coach Access</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Gagamit tayo ng 'Oswald' font - mukhang sports at matapang -->
+    <!-- Oswald Font para sa Masculine Look -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- PWA Meta Tags -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0038A8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<!-- Register Service Worker Script -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Error', err));
+    });
+  }
+</script>
+
+    <style>
+        /* Konting extra style para sa Login Screen Transition */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #E5E5E5;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999;
+        }
+        #login-section, #main-app { display: none; }
+    </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- 1. LOADING SCREEN (Lalabas habang chine-check ni Firebase kung naka-login si Coach) -->
+    <div id="loading-screen">
+        <h2 style="font-family: 'Oswald'; color: #0038A8;">LOADING...</h2>
+    </div>
+
+    <!-- 2. LOGIN SECTION (Ang "Gatekeeper") -->
+    <section id="login-section" class="container">
         <header>
             <div class="logo-box">
                 <h1>AG <span class="red-text">BOXING</span> GYM</h1>
-                <p class="tagline">San Pedro Laguna</p>
+                <p class="tagline">COACH ACCESS ONLY</p>
             </div>
         </header>
 
-        <!-- Form Section -->
-        <section class="card">
-            <h2 class="section-title">Magdagdag ng Gamit</h2>
-            <form id="inventoryForm">
-                <label>Pangalan ng Equipment</label>
-                <input type="text" id="itemName" placeholder="e.g. Punching Bag" required>
+        <div class="card" style="text-align: center; border-top: 5px solid var(--blue);">
+            <h2 class="section-title">Mag-Login, Coach</h2>
+            <form id="loginForm">
+                <label>Email Address</label>
+                <input type="email" id="loginEmail" placeholder="coach@agboxing.com" required>
                 
-                <label>Bilang (Quantity)</label>
-                <input type="number" id="itemQty" placeholder="0" required>
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
                 
-                <button type="submit" id="addBtn">ILISTA SA INVENTORY</button>
+                <button type="submit" id="loginBtn">PUMASOK SA SYSTEM</button>
             </form>
-        </section>
+            <p style="font-size: 0.7rem; margin-top: 15px; color: #666;">Contact admin if you forgot your password.</p>
+        </div>
+    </section>
 
-        <!-- List Section -->
-        <section class="list-container">
-            <h2 class="section-title">Kasalukuyang Stocks</h2>
-            <div class="yellow-bar"></div>
-            <ul id="inventoryList">
-                <!-- Dito lilitaw ang mga items -->
-            </ul>
-        </section>
-    </div>
+    <!-- 3. MAIN APP SECTION (Lalabas lang kapag SUCCESS ang Login) -->
+    <main id="main-app">
+        <div class="container">
+            <header style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="logo-box" style="text-align: left; border-bottom: none;">
+                    <h1 style="font-size: 1.5rem;">AG <span class="red-text">BOXING</span></h1>
+                </div>
+                <button id="logoutBtn" style="width: auto; padding: 5px 15px; font-size: 0.8rem; background: var(--red);">LOGOUT</button>
+            </header>
 
+            <!-- Form to Add Items -->
+            <section class="card">
+                <h2 class="section-title">Magdagdag ng Gamit</h2>
+                <form id="inventoryForm">
+                    <label>Pangalan ng Equipment</label>
+                    <input type="text" id="itemName" placeholder="e.g. Punching Bag" required>
+                    
+                    <label>Bilang (Quantity)</label>
+                    <input type="number" id="itemQty" placeholder="0" required>
+                    
+                    <button type="submit" id="addBtn">ILISTA SA INVENTORY</button>
+                </form>
+            </section>
+
+            <!-- List Section -->
+            <section class="list-container">
+                <h2 class="section-title">Kasalukuyang Stocks (0)</h2>
+                <div class="yellow-bar"></div>
+                <ul id="inventoryList">
+                    <!-- Data galing Firebase -->
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <!-- JS Link (Module type is IMPORTANT) -->
     <script type="module" src="app.js"></script>
 </body>
 </html>
