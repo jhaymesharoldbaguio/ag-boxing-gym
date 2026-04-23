@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>AG Boxing Gym | Coach Access</title>
     <link rel="stylesheet" href="style.css">
     <!-- Oswald Font para sa Masculine Look -->
@@ -72,12 +72,21 @@
     <!-- 3. MAIN APP SECTION (Lalabas lang kapag SUCCESS ang Login) -->
     <main id="main-app">
         <div class="container">
-            <header style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="logo-box" style="text-align: left; border-bottom: none;">
-                    <h1 style="font-size: 1.5rem;">AG <span class="red-text">BOXING</span></h1>
-                </div>
-                <button id="logoutBtn" style="width: auto; padding: 5px 15px; font-size: 0.8rem; background: var(--red);">LOGOUT</button>
-            </header>
+ <!-- Hanapin ang header sa loob ng main-app at dagdagan nito -->
+<header style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+    <div class="logo-box" style="text-align: left; border-bottom: none; margin-bottom: 0;">
+        <h1 style="font-size: 1.2rem;">AG <span class="red-text">BOXING</span></h1>
+    </div>
+    
+    <div style="display: flex; gap: 10px; align-items: center;">
+        <!-- NEW: Install Button (Hidden by default) -->
+        <button id="pwaInstallBtn" style="display: none; width: auto; padding: 5px 12px; font-size: 0.7rem; background: var(--yellow); color: var(--dark); border-radius: 2px; font-weight: bold;">
+            INSTALL APP
+        </button>
+        
+        <button id="logoutBtn" style="width: auto; padding: 5px 12px; font-size: 0.7rem; background: var(--red);">LOGOUT</button>
+    </div>
+</header>
 
             <!-- Form to Add Items -->
             <section class="card">
@@ -102,6 +111,19 @@
                 </ul>
             </section>
         </div>
+        
+<!-- Instruction Box para sa iPhone (Hidden by default) -->
+<div id="iosInstallHint" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; background: var(--white); border-top: 5px solid var(--blue); padding: 15px; box-shadow: 0 -5px 20px rgba(0,0,0,0.2); z-index: 10001; border-radius: 8px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="https://cdn-icons-png.flaticon.com/512/597/597659.png" width="30">
+        <div style="font-size: 0.85rem;">
+            <p><strong>Para i-install sa iPhone:</strong></p>
+            <p>Pindutin ang <img src="https://cdn-icons-png.flaticon.com/512/1000/1000966.png" width="15"> <strong>"Share"</strong> icon sa baba, tapos piliin ang <strong>"Add to Home Screen"</strong>. 🥊</p>
+        </div>
+        <button id="closeIosHint" style="background: none; border: none; font-size: 1.2rem; margin-left: auto;">×</button>
+    </div>
+</div>
+        
     </main>
 
     <!-- JS Link (Module type is IMPORTANT) -->

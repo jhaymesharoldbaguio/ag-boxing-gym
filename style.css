@@ -1,4 +1,10 @@
-/* 1. VARIABLES & RESET */
+/* 1. UNIVERSAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 :root {
     --blue: #0038A8;
     --red: #CE1126;
@@ -8,17 +14,20 @@
     --white: #FFFFFF;
 }
 
-* {
+/* 2. BASE STYLES */
+html, body {
+    width: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    overflow-x: hidden; /* Iwas zoom-out */
+    background-color: var(--cement);
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
 }
 
 body {
-    background-color: var(--cement);
     font-family: 'Inter', sans-serif;
     color: var(--dark);
-    padding: 20px 0;
 }
 
 h1, h2, h3, button {
@@ -26,91 +35,70 @@ h1, h2, h3, button {
     text-transform: uppercase;
 }
 
-/* 2. SPECIAL SCREENS (Loading & Login) */
-#loading-screen {
-    position: fixed;
-    top: 0; left: 0; 
-    width: 100%; height: 100%;
-    background: var(--cement);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999;
-}
-
-#login-section {
-    margin-top: 40px;
-}
-
 /* 3. LAYOUT & CONTAINER */
 .container {
-    max-width: 500px;
+    width: 100%;
+    max-width: 500px; /* Para sa desktop, pero 100% sa mobile */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 header {
     text-align: center;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     border-bottom: 5px solid var(--blue);
     padding-bottom: 15px;
 }
 
+/* BRANDING COLOR FIX */
 .logo-box h1 {
     font-size: 2.5rem;
     line-height: 1;
     color: var(--blue);
 }
 
+/* Heto yung nawalang code: */
 .red-text {
-    color: var(--red);
+    color: var(--red) !important;
 }
 
 .tagline {
-    letter-spacing: 3px;
+    font-size: 0.9rem;
     font-weight: bold;
-    font-size: 0.7rem;
-    color: var(--dark);
+    letter-spacing: 2px;
     margin-top: 5px;
 }
 
 /* 4. FORM & CARDS */
 .card {
     background: var(--white);
-    padding: 25px;
+    padding: 20px;
     border-radius: 4px;
-    box-shadow: 8px 8px 0px var(--blue);
-    margin-bottom: 40px;
+    box-shadow: 6px 6px 0px var(--blue);
+    margin-bottom: 30px;
 }
 
 .section-title {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
     color: var(--blue);
-    letter-spacing: 1px;
-}
-
-label {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: var(--dark);
 }
 
 input {
     width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 18px;
-    border: 1px solid #ccc;
+    height: 55px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1rem;
     outline: none;
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif;
 }
 
 input:focus {
     border-color: var(--red);
 }
 
-/* Buttons */
 button {
     cursor: pointer;
     border: none;
@@ -119,36 +107,41 @@ button {
 
 #addBtn, #loginBtn {
     width: 100%;
-    padding: 12px;
-    background-color: var(--blue);
-    color: var(--white);
-    font-size: 1rem;
+    height: 60px;
+    background: var(--blue);
+    color: white;
+    font-size: 1.2rem;
     font-weight: bold;
-    letter-spacing: 1px;
 }
 
-#addBtn:hover, #loginBtn:hover {
-    background-color: var(--red);
-}
-
-#logoutBtn {
-    background-color: var(--red);
-    color: var(--white);
-    padding: 5px 12px;
+#logoutBtn, #pwaInstallBtn {
+    width: auto;
+    min-height: 35px;
+    padding: 5px 15px;
     font-size: 0.8rem;
-    border-radius: 2px;
+    margin: 5px;
 }
 
-/* 5. LIST STYLING */
-.yellow-bar {
-    height: 4px;
-    background: var(--yellow);
-    width: 60px;
-    margin-bottom: 20px;
+#logoutBtn { background: var(--red); color: white; }
+#pwaInstallBtn { background: var(--yellow); color: var(--dark); }
+
+/* 5. LOADING SCREEN */
+#loading-screen {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--cement);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 10000;
 }
 
-ul {
+/* 6. LIST FIX */
+#inventoryList {
+    width: 100%;
     list-style: none;
+    padding: 0;
 }
 
-/* (Ang .item-card at controls ay nasa app.js na) */
+/* CSS para sa items na galing JS */
+.item-card {
+    width: 100%;
+}

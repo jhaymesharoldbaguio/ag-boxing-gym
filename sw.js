@@ -1,9 +1,25 @@
-// Simple Service Worker para maging installable ang app
+const CACHE_NAME = 'ag-gym-v1';
+const assets = [
+  './',
+  './index.html',
+  './style.css',
+  './app.js',
+  './manifest.json',
+  './logo.png'
+];
+
 self.addEventListener('install', (e) => {
-  console.log('Service Worker: Installed');
+  e.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(assets);
+    })
+  );
 });
 
 self.addEventListener('fetch', (e) => {
-  // Pinapayagan nito ang app na mag-load kahit offline ang ibang resources
-  e.respondWith(fetch(e.request));
+  e.respondWith(
+    caches.match(e.request).then((response) => {
+      return response || fetch(e.request);
+    })
+  );
 });
